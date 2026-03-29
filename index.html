@@ -139,6 +139,7 @@
 			display: flex;
 			align-items: center;
 			gap: 0.75rem;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 		}
 
 		.card-header.header-gold {
@@ -236,11 +237,18 @@
 			font-size: 0.95rem;
 			margin-bottom: 1rem;
 			transition: all 0.2s ease;
+			box-shadow: 0 2px 8px rgba(218, 41, 28, 0.2);
 		}
 
 		.featured-link:hover {
 			background: #C41E0D;
 			transform: translateX(4px);
+			box-shadow: 0 4px 12px rgba(218, 41, 28, 0.3);
+		}
+
+		.featured-link:focus-visible {
+			outline: 3px solid var(--mcd-gold);
+			outline-offset: 2px;
 		}
 
 		/* Footer */
@@ -254,19 +262,32 @@
 
 		footer .container {
 			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			gap: 2rem;
+			flex-direction: column;
+			gap: 1rem;
 		}
 
 		footer p {
 			font-size: 0.95rem;
 			opacity: 0.9;
+			margin: 0;
 		}
 
 		footer .footer-brand {
 			font-weight: 700;
 			color: var(--mcd-gold);
+		}
+
+		footer .footer-info {
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-end;
+			gap: 2rem;
+		}
+
+		footer .revision-info {
+			font-size: 0.85rem;
+			opacity: 0.75;
+			text-align: right;
 		}
 
 		/* Responsive */
@@ -294,8 +315,13 @@
 				gap: 1.5rem;
 			}
 
-			footer .container {
+			footer .footer-info {
 				flex-direction: column;
+				align-items: center;
+				text-align: center;
+			}
+
+			footer .revision-info {
 				text-align: center;
 			}
 		}
@@ -463,8 +489,11 @@
 
 	<footer>
 		<div class="container">
-			<p><span class="footer-brand">McDonald's Franchisee Portal</span> • Professional Operations Network</p>
-			<p>Last Updated: September 2024 • All systems secured and verified</p>
+			<p><span class="footer-brand">McDonald's Franchisee Portal</span> • Professional Operations Network • All systems secured and verified</p>
+			<div class="footer-info">
+				<div></div>
+				<div class="revision-info">Revision: March 2026</div>
+			</div>
 		</div>
 	</footer>
 </body>

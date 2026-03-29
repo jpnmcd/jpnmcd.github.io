@@ -1,0 +1,1 @@
+(self.webpackChunkunily=self.webpackChunkunily||[]).push([[6320],{76320:e=>{e.exports={projectName:"unily",isProduction:!0,dependencies:{applicationFederatedModules:[],unilyFederatedModules:["unily-token-provider","unily-dynamic-container","unily-application","unily-ui-library"],myFederatedModules:[]},endpoint:"",authToken:""}}}]);;
