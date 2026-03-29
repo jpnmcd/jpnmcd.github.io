@@ -1,0 +1,25 @@
+:root{
+  --mcd-gold:#FFBC0D;
+  --mcd-red:#DB0007;
+  --surface:#ffffff;
+  --text:#111111;
+  --muted:rgba(17,17,17,.70);
+
+  --radius-lg:20px;
+  --radius-md:14px;
+  --shadow:0 10px 30px rgba(0,0,0,.12);
+  --focus:0 0 0 3px rgba(219,0,7,.35);
+}
+
+body{
+  margin:0;
+  font-family: system-ui, Segoe UI, Arial, sans-serif;
+  background: var(--mcd-gold);
+  color: var(--text);
+}
+
+a:focus-visible, button:focus-visible, input:focus-visible{
+  outline: none;
+  box-shadow: var(--focus);
+  border-radius: 10px;
+}
