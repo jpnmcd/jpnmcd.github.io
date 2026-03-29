@@ -28,7 +28,7 @@
 
 		body {
 			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-			background: var(--bg-light);
+			background: #FFFFFF;
 			color: var(--text-dark);
 			line-height: 1.6;
 			display: flex;
@@ -37,7 +37,7 @@
 
 		/* Header */
 		header {
-			background: linear-gradient(135deg, var(--mcd-red) 0%, #C41E0D 100%);
+			background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
 			color: var(--text-light);
 			padding: 1.5rem 2rem;
 			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -68,12 +68,7 @@
 		}
 
 		header .badge {
-			background: var(--mcd-gold);
-			color: var(--mcd-dark);
-			padding: 0.4rem 0.8rem;
-			border-radius: 6px;
-			font-size: 0.85rem;
-			font-weight: 600;
+			display: none;
 		}
 
 		/* Main Content */
@@ -131,7 +126,7 @@
 		}
 
 		.card-header {
-			background: linear-gradient(135deg, var(--mcd-red) 0%, #C41E0D 100%);
+			background: linear-gradient(135deg, #34495E 0%, #2C3E50 100%);
 			color: var(--text-light);
 			padding: 1.25rem;
 			font-size: 1.25rem;
@@ -143,17 +138,17 @@
 		}
 
 		.card-header.header-gold {
-			background: linear-gradient(135deg, var(--mcd-gold) 0%, #E5B90D 100%);
-			color: var(--mcd-dark);
+			background: linear-gradient(135deg, #34495E 0%, #2C3E50 100%);
+			color: var(--text-light);
 		}
 
 		.card-header.header-success {
-			background: linear-gradient(135deg, var(--success) 0%, #146B28 100%);
+			background: linear-gradient(135deg, #34495E 0%, #2C3E50 100%);
+			color: var(--text-light);
 		}
 
 		.card-icon {
-			font-size: 1.5rem;
-			opacity: 0.9;
+			display: none;
 		}
 
 		.card-body {
@@ -175,7 +170,7 @@
 
 		.link-category {
 			font-weight: 600;
-			color: var(--mcd-red);
+			color: #555555;
 			font-size: 0.95rem;
 			margin: 1.25rem 0 0.75rem 0;
 			padding-top: 1.25rem;
@@ -191,7 +186,7 @@
 		}
 
 		.link-list a {
-			color: #0066CC;
+			color: #2C3E50;
 			text-decoration: none;
 			font-weight: 500;
 			display: inline-flex;
@@ -201,12 +196,12 @@
 		}
 
 		.link-list a:hover {
-			color: var(--mcd-red);
+			color: #3498DB;
 			text-decoration: underline;
 		}
 
 		.link-list a::before {
-			content: '→';
+			content: '';
 			font-weight: 700;
 			opacity: 0;
 			transition: opacity 0.2s ease;
@@ -228,8 +223,8 @@
 
 		.featured-link {
 			display: inline-block;
-			background: var(--mcd-red);
-			color: var(--text-light);
+			background: transparent;
+			color: #2C3E50;
 			padding: 0.75rem 1.25rem;
 			border-radius: 6px;
 			text-decoration: none;
@@ -237,13 +232,14 @@
 			font-size: 0.95rem;
 			margin-bottom: 1rem;
 			transition: all 0.2s ease;
-			box-shadow: 0 2px 8px rgba(218, 41, 28, 0.2);
+			box-shadow: none;
 		}
 
 		.featured-link:hover {
-			background: #C41E0D;
-			transform: translateX(4px);
-			box-shadow: 0 4px 12px rgba(218, 41, 28, 0.3);
+			background: transparent;
+			color: #3498DB;
+			transform: none;
+			box-shadow: none;
 		}
 
 		.featured-link:focus-visible {
@@ -253,11 +249,11 @@
 
 		/* Footer */
 		footer {
-			background: var(--mcd-dark);
+			background: #2C3E50;
 			color: var(--text-light);
 			padding: 2rem;
 			margin-top: auto;
-			border-top: 3px solid var(--mcd-red);
+			border-top: 3px solid #34495E;
 		}
 
 		footer .container {
@@ -340,9 +336,9 @@
 <body>
 	<header>
 		<div class="container">
-			<div class="logo">🍔 McDonald's</div>
+			<div class="logo">Operations Portal</div>
 			<div>
-				<div class="subtitle">Franchisee Operations Portal</div>
+				<div class="subtitle">Nyanko Operations Portal</div>
 			</div>
 			<div class="spacer"></div>
 			<div class="badge">Professional Network</div>
@@ -358,7 +354,7 @@
 				<!-- Card 1: McDonald's Sites -->
 				<div class="card card-primary">
 					<div class="card-header">
-						<span class="card-icon">🍟</span>
+					<span class="card-icon">🍟</span>
 						<span>McDonald's Sites</span>
 					</div>
 					<div class="card-body">
@@ -417,7 +413,7 @@
 				<!-- Card 2: Hiring Sites -->
 				<div class="card card-primary">
 					<div class="card-header header-gold">
-						<span class="card-icon">👥</span>
+					<span class="card-icon">👥</span>
 						<span>Hiring Sites</span>
 					</div>
 					<div class="card-body">
@@ -451,7 +447,7 @@
 				<!-- Card 3: Ref. & Learning Sites -->
 				<div class="card card-success">
 					<div class="card-header header-success">
-						<span class="card-icon">📚</span>
+					<span class="card-icon">📚</span>
 						<span>Ref. & Learning Sites</span>
 					</div>
 					<div class="card-body">
@@ -503,7 +499,7 @@
 				<!-- Card 4: Vendor Purchasing Sites -->
 				<div class="card">
 					<div class="card-header">
-						<span class="card-icon">📦</span>
+					<span class="card-icon">📦</span>
 						<span>Vendor Purchasing Sites</span>
 					</div>
 					<div class="card-body">
@@ -554,7 +550,7 @@
 
 	<footer>
 		<div class="container">
-			<p><span class="footer-brand">McDonald's Franchisee Portal</span> • Professional Operations Network • All systems secured and verified</p>
+			<p><span class="footer-brand">Nyanko Operations Portal</span> • Professional Operations Network • All systems secured and verified</p>
 			<div class="footer-info">
 				<div></div>
 				<div class="revision-info">Revision: March 2026</div>
