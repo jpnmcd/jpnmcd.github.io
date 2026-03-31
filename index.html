@@ -99,6 +99,46 @@
 			margin-bottom: 1.5rem;
 		}
 
+		.search-toolbar {
+			display: flex;
+			justify-content: center;
+			margin-bottom: 1.25rem;
+		}
+
+		.search-box {
+			width: min(100%, 420px);
+		}
+
+		.search-box input {
+			width: 100%;
+			padding: 0.75rem 1rem;
+			border: 1px solid var(--border-light);
+			border-radius: 999px;
+			font-size: 0.95rem;
+			background: rgba(255, 255, 255, 0.96);
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+		}
+
+		.search-box input:focus-visible {
+			outline: 3px solid var(--mcd-red);
+			outline-offset: 2px;
+		}
+
+		.search-hint {
+			font-size: 0.85rem;
+			color: #555;
+			text-align: center;
+			margin-top: 0.4rem;
+			min-height: 1.2rem;
+		}
+
+		.search-highlight {
+			background: #FCD34D;
+			color: #1F1F1F;
+			padding: 0 0.12em;
+			border-radius: 4px;
+		}
+
 		/* Cards Grid */
 		.cards-grid {
 			display: grid;
@@ -114,6 +154,11 @@
 			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 			transition: all 0.3s ease;
 			border-left: 5px solid var(--mcd-gold);
+		}
+
+		.card.is-hidden,
+		.link-list li.is-hidden {
+			display: none;
 		}
 
 		.card:hover {
@@ -345,6 +390,13 @@
 	</header>
 
 	<main>
+		<div class="container">
+			<div class="search-toolbar">
+				<div class="search-box">
+					<input type="search" id="linkSearch" placeholder="Search links..." aria-label="Search portal links" autocomplete="off">
+					<div id="searchHint" class="search-hint">Type to filter the links below.</div>
+				</div>
+			</div>
 			<div class="cards-grid">
 				<!-- Card 1: McDonald's Sites -->
 				<div class="card card-primary">
@@ -513,6 +565,115 @@
 			</div>
 		</div>
 	</footer>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const searchInput = document.getElementById('linkSearch');
+			const searchHint = document.getElementById('searchHint');
+			const cards = Array.from(document.querySelectorAll('.card'));
+			const totalLinks = document.querySelectorAll('.link-list a').length;
+
+			if (!searchInput || !searchHint || !cards.length) {
+				return;
+			}
+
+			const buildGroups = (items) => {
+				const groups = [];
+				let currentGroup = { header: null, links: [] };
+
+				items.forEach((item) => {
+					if (item.classList.contains('link-category')) {
+						if (currentGroup.header || currentGroup.links.length) {
+							groups.push(currentGroup);
+						}
+						currentGroup = { header: item, links: [] };
+					} else {
+						currentGroup.links.push(item);
+					}
+				});
+
+				if (currentGroup.header || currentGroup.links.length) {
+					groups.push(currentGroup);
+				}
+
+				return groups;
+			};
+
+			const escapeHtml = (value) => value
+				.replace(/&/g, '&amp;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;')
+				.replace(/"/g, '&quot;')
+				.replace(/'/g, '&#39;');
+
+			const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+			const setHighlight = (link, query) => {
+				if (!link) {
+					return;
+				}
+
+				const originalText = link.dataset.originalText || link.textContent;
+				link.dataset.originalText = originalText;
+
+				if (!query) {
+					link.innerHTML = escapeHtml(originalText);
+					return;
+				}
+
+				const safeText = escapeHtml(originalText);
+				const regex = new RegExp(`(${escapeRegExp(query)})`, 'ig');
+				link.innerHTML = safeText.replace(regex, '<mark class="search-highlight">$1</mark>');
+			};
+
+			const updateResults = () => {
+				const query = searchInput.value.trim().toLowerCase();
+				let totalMatches = 0;
+
+				cards.forEach((card) => {
+					const items = Array.from(card.querySelectorAll('.link-list li'));
+					const groups = buildGroups(items);
+					let cardMatches = 0;
+
+					groups.forEach((group) => {
+						let groupMatches = 0;
+
+						group.links.forEach((item) => {
+							const link = item.querySelector('a');
+							const text = link ? link.textContent.toLowerCase() : item.textContent.toLowerCase();
+							const isMatch = !query || text.includes(query);
+
+							setHighlight(link, query);
+							item.classList.toggle('is-hidden', !isMatch);
+							if (isMatch) {
+								groupMatches += 1;
+							}
+						});
+
+						if (group.header) {
+							group.header.classList.toggle('is-hidden', Boolean(query) && groupMatches === 0);
+						}
+
+						cardMatches += groupMatches;
+					});
+
+					card.classList.toggle('is-hidden', Boolean(query) && cardMatches === 0);
+					totalMatches += cardMatches;
+				});
+
+				if (!query) {
+					searchHint.textContent = `Type to filter ${totalLinks} links instantly.`;
+				} else if (totalMatches === 0) {
+					searchHint.textContent = `No links found for “${searchInput.value.trim()}”.`;
+				} else {
+					searchHint.textContent = `${totalMatches} link${totalMatches === 1 ? '' : 's'} found.`;
+				}
+			};
+
+			searchInput.addEventListener('input', updateResults);
+			updateResults();
+		});
+	</script>
 </body>
 
 </html>
