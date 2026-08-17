@@ -13,12 +13,15 @@
 
 		:root {
 			--mcd-red: #DA291C;
-			--mcd-gold: #FCD34D;
-			--mcd-dark: #27251F;
-			--text-dark: #1F1F1F;
+			--mcd-red-deep: #B6121D;
+			--mcd-gold: #FFC72C;
+			--mcd-gold-deep: #F9A602;
+			--mcd-dark: #1F1F1F;
+			--mcd-navy: #0B1F3A;
+			--text-dark: #111827;
 			--text-light: #FFFFFF;
-			--bg-light: #F5F5F5;
-			--border-light: #E5E5E5;
+			--bg-light: #F7F7F5;
+			--border-light: #E5E7EB;
 			--success: #1E7E34;
 		}
 
@@ -28,9 +31,7 @@
 
 		body {
 			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-			background: #FFFFFF url('./Designer.png') no-repeat center center;
-			background-attachment: fixed;
-			background-size: cover;
+			background: linear-gradient(180deg, #fffdf9 0%, #fff4c9 100%);
 			color: var(--text-dark);
 			line-height: 1.6;
 			display: flex;
@@ -39,10 +40,11 @@
 
 		/* Header */
 		header {
-			background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
+			background: linear-gradient(135deg, var(--mcd-red-deep) 0%, var(--mcd-red) 45%, #a80d1c 100%);
 			color: var(--text-light);
 			padding: 1.5rem 2rem;
-			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+			box-shadow: 0 10px 26px rgba(186, 18, 29, 0.28);
+			border-bottom: 4px solid var(--mcd-gold);
 		}
 
 		header .container {
@@ -55,10 +57,13 @@
 		}
 
 		header .logo {
-			font-size: 2.5rem;
-			font-weight: 700;
-			letter-spacing: -0.5px;
+			font-size: clamp(2rem, 3vw, 3rem);
+			font-weight: 900;
+			letter-spacing: -0.06em;
 			text-align: center;
+			text-transform: uppercase;
+			color: #fff8d8;
+			text-shadow: 0 3px 0 rgba(0,0,0,0.12);
 		}
 
 		header .subtitle {
@@ -136,6 +141,203 @@
 			background: #FCD34D;
 			color: #1F1F1F;
 			padding: 0 0.12em;
+			border-radius: 4px;
+		}
+
+		.quick-links-panel,
+		.resource-list-panel {
+			background: rgba(255, 255, 255, 0.96);
+			border: 2px solid rgba(218, 41, 28, 0.12);
+			border-radius: 30px;
+			box-shadow: 0 18px 50px rgba(17, 24, 39, 0.12);
+			padding: 1.5rem;
+			margin-bottom: 1.75rem;
+			backdrop-filter: blur(4px);
+		}
+
+		.section-heading {
+			display: flex;
+			justify-content: space-between;
+			align-items: end;
+			gap: 1rem;
+			margin-bottom: 1.25rem;
+		}
+
+		.eyebrow {
+			margin: 0 0 0.4rem;
+			font-size: 0.72rem;
+			font-weight: 900;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+			color: var(--mcd-red);
+		}
+
+		.section-heading h2 {
+			font-size: clamp(1.5rem, 2vw, 2rem);
+			margin: 0;
+			color: var(--mcd-navy);
+			font-weight: 900;
+			letter-spacing: -0.04em;
+		}
+
+		.quick-links-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+			gap: 1rem;
+		}
+
+		.quick-link {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 0.85rem;
+			min-height: 118px;
+			padding: 1rem 1.1rem;
+			border-radius: 22px;
+			text-decoration: none;
+			color: #fff;
+			position: relative;
+			overflow: hidden;
+			box-shadow: 0 14px 28px rgba(15, 23, 42, 0.2);
+			transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+			border: 2px solid rgba(255,255,255,0.12);
+		}
+
+		.quick-link::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(135deg, rgba(255,255,255,0.26), rgba(255,255,255,0));
+			pointer-events: none;
+		}
+
+		.quick-link:hover {
+			transform: translateY(-5px) scale(1.01);
+			box-shadow: 0 18px 36px rgba(15, 23, 42, 0.26);
+			filter: saturate(1.08);
+		}
+
+		.quick-link .icon {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 56px;
+			height: 56px;
+			border-radius: 18px;
+			background: rgba(255, 255, 255, 0.18);
+			font-size: 1.9rem;
+			position: relative;
+			z-index: 1;
+			box-shadow: inset 0 2px 0 rgba(255,255,255,0.2);
+		}
+
+		.quick-link .label {
+			display: flex;
+			flex-direction: column;
+			gap: 0.2rem;
+			position: relative;
+			z-index: 1;
+			flex: 1;
+		}
+
+		.quick-link .label strong {
+			font-size: 1.05rem;
+			line-height: 1.2;
+			font-weight: 900;
+			letter-spacing: -0.03em;
+		}
+
+		.quick-link .label span {
+			font-size: 0.66rem;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+			opacity: 0.95;
+			font-weight: 700;
+		}
+
+		.quick-link .arrow {
+			position: relative;
+			z-index: 1;
+			font-size: 1.6rem;
+			line-height: 1;
+		}
+
+		.quick-link-red { background: linear-gradient(135deg, #DB1F26 0%, #B7121A 100%); }
+		.quick-link-gold { background: linear-gradient(135deg, #F9B11E 0%, #E88A00 100%); }
+		.quick-link-navy { background: linear-gradient(135deg, #0D2D5C 0%, #102B4C 100%); }
+		.quick-link-green { background: linear-gradient(135deg, #1D8A4A 0%, #126B3A 100%); }
+		.quick-link-purple { background: linear-gradient(135deg, #5F2CC7 0%, #3A1D7A 100%); }
+		.quick-link-slate { background: linear-gradient(135deg, #4B5563 0%, #2B3444 100%); }
+
+		.resource-groups {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+			gap: 1rem;
+		}
+
+		.resource-group {
+			background: #FFFFFF;
+			border: 1px solid var(--border-light);
+			border-radius: 18px;
+			padding: 1rem;
+			box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
+		}
+
+		.resource-group.is-hidden,
+		.link-list li.is-hidden {
+			display: none;
+		}
+
+		.resource-group h3 {
+			margin: 0 0 0.85rem;
+			font-size: 1.1rem;
+			color: #111827;
+		}
+
+		.link-list {
+			list-style: none;
+			display: flex;
+			flex-direction: column;
+			gap: 0.45rem;
+		}
+
+		.link-list li {
+			line-height: 1.4;
+		}
+
+		.link-category {
+			font-weight: 700;
+			font-size: 0.78rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			color: #6B7280;
+			padding-top: 0.5rem;
+			margin-top: 0.5rem;
+			border-top: 1px solid #E5E7EB;
+		}
+
+		.link-list a {
+			color: #1F2937;
+			text-decoration: none;
+			font-weight: 500;
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5rem;
+			padding: 0.2rem 0;
+			transition: color 0.2s ease;
+		}
+
+		.link-list a:hover {
+			color: #DA291C;
+		}
+
+		.link-list a:visited {
+			color: #7C3AED;
+		}
+
+		.link-list a:focus-visible {
+			outline: 3px solid var(--mcd-red);
+			outline-offset: 2px;
 			border-radius: 4px;
 		}
 
@@ -298,11 +500,11 @@
 
 		/* Footer */
 		footer {
-			background: #2C3E50;
+			background: linear-gradient(135deg, #0F172A 0%, #1F2937 100%);
 			color: var(--text-light);
 			padding: 2rem;
 			margin-top: auto;
-			border-top: 3px solid #34495E;
+			border-top: 4px solid var(--mcd-gold);
 		}
 
 		footer .container {
@@ -318,8 +520,9 @@
 		}
 
 		footer .footer-brand {
-			font-weight: 700;
+			font-weight: 900;
 			color: var(--mcd-gold);
+			letter-spacing: -0.03em;
 		}
 
 		footer .footer-info {
@@ -385,7 +588,7 @@
 <body>
 	<header>
 		<div class="container">
-			<div class="logo">🍔 JPN Management - Operations Portal 🍔</div>
+			<div class="logo">McDonald's Operations Portal</div>
 		</div>
 	</header>
 
@@ -397,14 +600,87 @@
 					<div id="searchHint" class="search-hint">Type to filter the links below.</div>
 				</div>
 			</div>
-			<div class="cards-grid">
-				<!-- Card 1: McDonald's Sites -->
-				<div class="card card-primary">
-					<div class="card-header">
-					<span class="card-icon">🍟</span>
-					<span>McDonald's Sites</span>
+			<section class="quick-links-panel" aria-labelledby="quick-links-title">
+				<div class="section-heading">
+					<div>
+						<p class="eyebrow">Popular access</p>
+						<h2 id="quick-links-title">Most used tools</h2>
+					</div>
 				</div>
-					<div class="card-body">
+				<div class="quick-links-grid">
+					<a class="quick-link quick-link-red" href="https://www.atmcd.com/" target="_blank" rel="noopener noreferrer">
+						<span class="icon">🍔</span>
+						<span class="label"><strong>AtMcD</strong><span>Portal</span></span>
+						<span class="arrow">→</span>
+					</a>
+					<a class="quick-link quick-link-navy" href="https://pace.mcd.com/" target="_blank" rel="noopener noreferrer">
+						<span class="icon">📊</span>
+						<span class="label"><strong>PACE</strong><span>Portal</span></span>
+						<span class="arrow">→</span>
+					</a>
+					<a class="quick-link quick-link-gold" href="https://propel.mcd.com/" target="_blank" rel="noopener noreferrer">
+						<span class="icon">🚀</span>
+						<span class="label"><strong>PROPEL</strong><span>Operations</span></span>
+						<span class="arrow">→</span>
+					</a>
+					<a class="quick-link quick-link-green" href="https://home.myqsrsoft.com/" target="_blank" rel="noopener noreferrer">
+						<span class="icon">📦</span>
+						<span class="label"><strong>MyQsrSoft</strong><span>Inventory</span></span>
+						<span class="arrow">→</span>
+					</a>
+					<a class="quick-link quick-link-purple" href="https://mchire.com/signin" target="_blank" rel="noopener noreferrer">
+						<span class="icon">👥</span>
+						<span class="label"><strong>McHire</strong><span>Hiring</span></span>
+						<span class="arrow">→</span>
+					</a>
+					<a class="quick-link quick-link-slate" href="http://account.mcd.com/" target="_blank" rel="noopener noreferrer">
+						<span class="icon">🟢</span>
+						<span class="label"><strong>Global Account Manager</span></span>
+						<span class="arrow">→</span>
+					</a>
+					<a class="quick-link quick-link-red" href="https://otpcentral.mcd.com/" target="_blank" rel="noopener noreferrer">
+						<span class="icon">💻</span>
+						<span class="label"><strong>OTP Central</strong><span>Support</span></span>
+						<span class="arrow">→</span>
+					</a>
+					<a class="quick-link quick-link-navy" href="https://mcdonaldsandme.mcd.com/" target="_blank" rel="noopener noreferrer">
+						<span class="icon">🏆</span>
+						<span class="label"><strong>McDonald's+Me</strong><span>Profile</span></span>
+						<span class="arrow">→</span>
+					</a>
+					<a class="quick-link quick-link-green" href="https://admin.lifelenz.com/" target="_blank" rel="noopener noreferrer">
+						<span class="icon">🎓</span>
+						<span class="label"><strong>Lifelenz</strong><span>Training</span></span>
+						<span class="arrow">→</span>
+					</a>
+					<a class="quick-link quick-link-gold" href="https://www.mcdaltametrics.com/" target="_blank" rel="noopener noreferrer">
+						<span class="icon">📈</span>
+						<span class="label"><strong>e*Restaurant</strong><span>Labor</span></span>
+						<span class="arrow">→</span>
+					</a>
+					<a class="quick-link quick-link-slate" href="https://mymail.mcd.com/" target="_blank" rel="noopener noreferrer">
+						<span class="icon">✉️</span>
+						<span class="label"><strong>Mail</strong><span>Webmail</span></span>
+						<span class="arrow">→</span>
+					</a>
+					<a class="quick-link quick-link-purple" href="https://www.atmcd.com/sites/us/supplychain/SitePage/166539/us-restaurant-food-safety" target="_blank" rel="noopener noreferrer">
+						<span class="icon">🛡️</span>
+						<span class="label"><strong>Food Safety</strong><span>Resources</span></span>
+						<span class="arrow">→</span>
+					</a>
+				</div>
+			</section>
+
+			<section class="resource-list-panel" aria-labelledby="all-links-title">
+				<div class="section-heading">
+					<div>
+						<p class="eyebrow">Complete list</p>
+						<h2 id="all-links-title">All resources</h2>
+					</div>
+				</div>
+				<div class="resource-groups">
+					<div class="resource-group">
+						<h3>McDonald's Sites</h3>
 						<ul class="link-list">
 							<li><a href="https://status.mcd.com/" target="_blank" rel="noopener noreferrer">McDonald's Status</a></li>
 							<li><a href="https://www.atmcd.com/sites/us/operations/SitePage/786095/restaurant-brief-archive" target="_blank" rel="noopener noreferrer">Restaurant Brief Archive</a></li>
@@ -412,57 +688,38 @@
 							<li><a href="https://www.atmcd.com/sites/u-s/itd-nabit/SitePageModern/2948507/digital-manager-s-guide-portal-dmg" target="_blank" rel="noopener noreferrer">Digital Manager's Guide Portal</a></li>
 							<li><a href="https://www.atmcd.com/sites/us/supplychain/SitePage/166539/us-restaurant-food-safety" target="_blank" rel="noopener noreferrer">US Restaurant Food Safety</a></li>
 							<li><a href="https://www.atmcd.com/" target="_blank" rel="noopener noreferrer">AtMcD</a></li>
-							
-							<li class="link-category">Operations & PACE</li>
-							<li><a href="https://prod.ebos.qsrsoft.com/" target="_blank" rel="noopener noreferrer">Cash & Inventory (CIT)</a></li>
+							<li class="link-category">Operations &amp; PACE</li>
+							<li><a href="https://prod.ebos.qsrsoft.com/" target="_blank" rel="noopener noreferrer">Cash &amp; Inventory (CIT)</a></li>
 							<li><a href="https://home.myqsrsoft.com/" target="_blank" rel="noopener noreferrer">MyQsrSoft</a></li>
 							<li><a href="https://peak.mcd.com/App" target="_blank" rel="noopener noreferrer">PEAK</a></li>
 							<li><a href="https://propel.mcd.com/" target="_blank" rel="noopener noreferrer">PROPEL</a></li>
 							<li><a href="https://pace.mcd.com/" target="_blank" rel="noopener noreferrer">PACE Portal</a></li>
 							<li><a href="http://voicereporting.mcd.com/" target="_blank" rel="noopener noreferrer">Customer Response - VOICE Dashboard</a></li>
-							
 							<li class="link-category">Email / Webmail</li>
 							<li><a href="https://mymail.mcd.com/" target="_blank" rel="noopener noreferrer">Partner's Mail</a></li>
 							<li><a href="https://mymail.mcd.com/" target="_blank" rel="noopener noreferrer">Store Mail</a></li>
-
 							<li class="link-category">Additional Resources</li>
 							<li><a href="https://mcdonalds.courses.lifelenz.com/" target="_blank" rel="noopener noreferrer">Lifelenz Courses</a></li>
-
 						</ul>
 					</div>
-				</div>
 
-				<!-- Card 2: Hiring Sites -->
-				<div class="card card-primary">
-					<div class="card-header header-gold">
-					<span class="card-icon">👥</span>
-					<span>Hiring Sites</span>
-				</div>
-					<div class="card-body">
+					<div class="resource-group">
+						<h3>Hiring &amp; Workforce</h3>
 						<ul class="link-list">
 							<li><a href="https://mchire.com/signin" target="_blank" rel="noopener noreferrer">McHire</a></li>
 							<li><a href="http://account.mcd.com/" target="_blank" rel="noopener noreferrer">Global Account Manager (GAM)</a></li>
 							<li><a href="https://mcdonaldsandme.mcd.com/" target="_blank" rel="noopener noreferrer">McDonald's+Me</a></li>
-
 							<li class="link-category">Workforce Management</li>
 							<li><a href="https://admin.lifelenz.com/" target="_blank" rel="noopener noreferrer">Lifelenz</a></li>
 							<li><a href="https://www.mcdaltametrics.com/" target="_blank" rel="noopener noreferrer">e*Restaurant</a></li>
 							<li><a href="https://hlp.mcdaltametrics.com/" target="_blank" rel="noopener noreferrer">e*Restaurant Help</a></li>
-
 							<li class="link-category">WOTC Vendor</li>
 							<li><a href="https://taxincentivegroup.com" target="_blank" rel="noopener noreferrer">Tax Incentive Group</a></li>
-
 						</ul>
 					</div>
-				</div>
 
-				<!-- Card 2b: Technology Sites -->
-				<div class="card card-primary">
-					<div class="card-header header-gold">
-					<span class="card-icon">💻</span>
-					<span>Technology Sites</span>
-				</div>
-					<div class="card-body">
+					<div class="resource-group">
+						<h3>Technology</h3>
 						<ul class="link-list">
 							<li><a href="https://form.jotform.com/233385078952163" target="_blank" rel="noopener noreferrer">Nyanko OTP Ticket System</a></li>
 							<li><a href="https://otpcentral.mcd.com/" target="_blank" rel="noopener noreferrer">OTP Central</a></li>
@@ -471,65 +728,44 @@
 							<li><a href="https://rrm.mcd.com/" target="_blank" rel="noopener noreferrer">RRM</a></li>
 							<li><a href="https://vhqmcdgui.verifone.com/" target="_blank" rel="noopener noreferrer">VHQ</a></li>
 							<li><a href="https://us-mcd.switchboardcms.com/ui/cc-ui/#/login-select" target="_blank" rel="noopener noreferrer">Coates Digital Menu Board Portal</a></li>
-							<li><a href="https://mcdonalds.service-now.com/blsp" target="_blank" rel="noopener noreferrer">UNISYS McDonald's Restaurant Technology Support Portal </a></li>
-						
+							<li><a href="https://mcdonalds.service-now.com/blsp" target="_blank" rel="noopener noreferrer">UNISYS McDonald's Restaurant Technology Support Portal</a></li>
 							<li class="link-category">Delivery Vendors</li>
 							<li><a href="https://merchant-portal.doordash.com/" target="_blank" rel="noopener noreferrer">Door Dash Merchant Portal</a></li>
 							<li><a href="https://restaurant.grubhub.com/login" target="_blank" rel="noopener noreferrer">GrubHub for Restaurants Merchant Portal</a></li>
 							<li><a href="http://auth.uber.com/login/" target="_blank" rel="noopener noreferrer">Uber Eats Merchant Portal</a></li>
-
 						</ul>
 					</div>
-				</div>
 
-				<!-- Card 3: Ref. & Learning Sites -->
-				<div class="card card-success">
-					<div class="card-header header-success">
-					<span class="card-icon">📚</span>
-					<span>Reference & Learning Sites</span>
-				</div>
-					<div class="card-body">
+					<div class="resource-group">
+						<h3>Reference &amp; Learning</h3>
 						<ul class="link-list">
-							<li class="link-category">Crew & Manager Training</li>
+							<li class="link-category">Crew &amp; Manager Training</li>
 							<li><a href="https://mcd.edcast.com/" target="_blank" rel="noopener noreferrer">Hamburger University Online (HUOnline)</a></li>
-
-							<li class="link-category">Equipment & Planned Maintenance</li>
+							<li class="link-category">Equipment &amp; Planned Maintenance</li>
 							<li><a href="https://merc.partstown.com/" target="_blank" rel="noopener noreferrer">MERC - Equipment Resource Center</a></li>
 							<li><a href="https://v3.myqsrsoft.com/equipment/maintenance" target="_blank" rel="noopener noreferrer">MyQSRSoft - Digital Planned Maintenance</a></li>
 							<li><a href="https://www.atmcd.com/sites/us/supplychain/SitePage/447291/pm-cards" target="_blank" rel="noopener noreferrer">AtMcD - Planned Maintenance Cards</a></li>
 							<li><a href="https://www.atmcd.com/sites/us/operations/SitePage/459315/operations-resource-center-orc" target="_blank" rel="noopener noreferrer">Operations Resource Center (ORC)</a></li>
-
 							<li class="link-category">Archways to Opportunity</li>
 							<li><a href="http://www.archwaystoopportunity.com/" target="_blank" rel="noopener noreferrer">Archways to Opportunity</a></li>
 							<li><a href="http://www.ed2go.com/mcdonalds" target="_blank" rel="noopener noreferrer">Career Online High School</a></li>
-
 							<li class="link-category">Payroll Payment Systems</li>
 							<li><a href="https://portal.clientaccesssite.com/web/fsv_connect/login" target="_blank" rel="noopener noreferrer">FSV PayCard</a></li>
 							<li><a href="https://www.myjobtogo.com/" target="_blank" rel="noopener noreferrer">MyJobToGo</a></li>
-
 							<li class="link-category">Additional Resources</li>
 							<li><a href="http://www.rtitom.com/" target="_blank" rel="noopener noreferrer">RTI Oil</a></li>
 							<li><a href="https://aim.applyists.net/" target="_blank" rel="noopener noreferrer">Tuition Assistance O/O Report</a></li>
 						</ul>
 					</div>
-				</div>
 
-				<!-- Card 4: Vendor Purchasing Sites -->
-				<div class="card">
-					<div class="card-header">
-					<span class="card-icon">📦</span>
-					<span>Vendor Purchasing Sites</span>
-				</div>
-					<div class="card-body">
+					<div class="resource-group">
+						<h3>Vendor &amp; Purchasing</h3>
 						<ul class="link-list">
 							<li><a href="https://www.buyerquest.net/spendsmart" target="_blank" rel="noopener noreferrer">SpendSmart Marketplace</a></li>
-
 							<li class="link-category">Approved Uniforms</li>
 							<li><a href="https://us-uniforms.mcdonalds.com/" target="_blank" rel="noopener noreferrer">Uniforms Portal</a></li>
-
 							<li class="link-category">Digital Food Safety</li>
 							<li><a href="http://www.squadle.com/" target="_blank" rel="noopener noreferrer">Squadle</a></li>
-							
 							<li class="link-category">Other Vendors</li>
 							<li><a href="http://www.cokesmart.com/" target="_blank" rel="noopener noreferrer">Coke Smart</a></li>
 							<li><a href="https://customer.ecolab.com/" target="_blank" rel="noopener noreferrer">ECOLAB</a></li>
@@ -537,19 +773,19 @@
 							<li><a href="https://ws.frankefs.com/shop/" target="_blank" rel="noopener noreferrer">FRANKE</a></li>
 							<li><a href="http://www.grainger.com/" target="_blank" rel="noopener noreferrer">Grainger</a></li>
 							<li><a href="http://www.smilemakersonline.com/" target="_blank" rel="noopener noreferrer">Group II</a></li>
-							<li><a href="http://www.hkionline.com/" target="_blank" rel="noopener noreferrer">H&K International</a></li>
+							<li><a href="http://www.hkionline.com/" target="_blank" rel="noopener noreferrer">H&amp;K International</a></li>
 							<li><a href="http://www.hme.com/" target="_blank" rel="noopener noreferrer">HME</a></li>
 							<li><a href="https://docstore.fedex.com/mcdonalds" target="_blank" rel="noopener noreferrer">Kinko's</a></li>
 							<li><a href="https://martinbrower.my.site.com/Sync" target="_blank" rel="noopener noreferrer">Anderson-Dubose Sync</a></li>
 							<li><a href="https://myncrsso.ncr.com/" target="_blank" rel="noopener noreferrer">MyNCR</a></li>
 							<li><a href="https://www.partstown.com/mcdonalds" target="_blank" rel="noopener noreferrer">PartsTown</a></li>
 							<li><a href="http://www.shoesforcrews.com/" target="_blank" rel="noopener noreferrer">Shoes for Crews</a></li>
-							<li><a href="https://portal.servsafe.com/ss/portals?portal=mcusa&token=@MCUSA1079403281998@" target="_blank" rel="noopener noreferrer">ServSafe Discount & Manager Course</a></li>
+							<li><a href="https://portal.servsafe.com/ss/portals?portal=mcusa&token=@MCUSA1079403281998@" target="_blank" rel="noopener noreferrer">ServSafe Discount &amp; Manager Course</a></li>
 							<li><a href="https://www.ups.com/" target="_blank" rel="noopener noreferrer">UPS</a></li>
 						</ul>
 					</div>
 				</div>
-			</div>
+			</section>
 		</div>
 	</main>
 
@@ -567,34 +803,12 @@
 		document.addEventListener('DOMContentLoaded', () => {
 			const searchInput = document.getElementById('linkSearch');
 			const searchHint = document.getElementById('searchHint');
-			const cards = Array.from(document.querySelectorAll('.card'));
-			const totalLinks = document.querySelectorAll('.link-list a').length;
+			const groups = Array.from(document.querySelectorAll('.resource-group'));
+			const totalLinks = document.querySelectorAll('.resource-group .link-list a').length;
 
-			if (!searchInput || !searchHint || !cards.length) {
+			if (!searchInput || !searchHint || !groups.length) {
 				return;
 			}
-
-			const buildGroups = (items) => {
-				const groups = [];
-				let currentGroup = { header: null, links: [] };
-
-				items.forEach((item) => {
-					if (item.classList.contains('link-category')) {
-						if (currentGroup.header || currentGroup.links.length) {
-							groups.push(currentGroup);
-						}
-						currentGroup = { header: item, links: [] };
-					} else {
-						currentGroup.links.push(item);
-					}
-				});
-
-				if (currentGroup.header || currentGroup.links.length) {
-					groups.push(currentGroup);
-				}
-
-				return groups;
-			};
 
 			const escapeHtml = (value) => value
 				.replace(/&/g, '&amp;')
@@ -627,35 +841,28 @@
 				const query = searchInput.value.trim().toLowerCase();
 				let totalMatches = 0;
 
-				cards.forEach((card) => {
-					const items = Array.from(card.querySelectorAll('.link-list li'));
-					const groups = buildGroups(items);
-					let cardMatches = 0;
+				groups.forEach((group) => {
+					const items = Array.from(group.querySelectorAll('.link-list li'));
+					let groupMatches = 0;
 
-					groups.forEach((group) => {
-						let groupMatches = 0;
-
-						group.links.forEach((item) => {
-							const link = item.querySelector('a');
-							const text = link ? link.textContent.toLowerCase() : item.textContent.toLowerCase();
-							const isMatch = !query || text.includes(query);
-
-							setHighlight(link, query);
-							item.classList.toggle('is-hidden', !isMatch);
-							if (isMatch) {
-								groupMatches += 1;
-							}
-						});
-
-						if (group.header) {
-							group.header.classList.toggle('is-hidden', Boolean(query) && groupMatches === 0);
+					items.forEach((item) => {
+						const link = item.querySelector('a');
+						if (!link) {
+							item.classList.toggle('is-hidden', Boolean(query));
+							return;
 						}
 
-						cardMatches += groupMatches;
+						const text = link.textContent.toLowerCase();
+						const isMatch = !query || text.includes(query);
+						setHighlight(link, query);
+						item.classList.toggle('is-hidden', !isMatch);
+						if (isMatch) {
+							groupMatches += 1;
+						}
 					});
 
-					card.classList.toggle('is-hidden', Boolean(query) && cardMatches === 0);
-					totalMatches += cardMatches;
+					group.classList.toggle('is-hidden', Boolean(query) && groupMatches === 0);
+					totalMatches += groupMatches;
 				});
 
 				if (!query) {
